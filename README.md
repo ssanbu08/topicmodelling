@@ -1,4 +1,4 @@
-# topicmodelling
+# Topic Modelling
 Topic Modelling using LDA to understand the subtopics in reviews
 
 0. configuartion.py : contains all configirations to file paths.
