@@ -27,3 +27,36 @@ Topic Modelling using LDA to understand the subtopics in reviews
 7. cofigurations.py : Conatins all file related configurations .This file must be changed based on your data location.By Default it looks for files /data location form the current directory. 
 
 7. Dockerfile : contains the instructions to create a docker image.
+
+Steps to create a docker image:
+
+Step 1: Download the github repository  to your local .
+
+Step 2: create folders /data , /models inside the repository downloaded.
+
+Step 3 : Open the command prompt and navigate to the repository 
+
+Step 4 : Execute the following command to build an image locally
+docker build -t topicmodel .
+
+Step 5:  Execute the following command to create a container from the image
+docker run -t -i --name YelpBuild3 -v D:/Yelp/Code/Iteration_3/data:/src/data topicmodel /bin/bash
+
+*Note :
+   --name <name_of_container>
+    -v <src_dirc : dest_dir_in_container>
+    Image name : topicmodel
+    In mapping volumes ,the  source directory should contain all json files.
+ 
+Step 6: On successfully building your container ,navigate to the source folder.
+cd src
+
+Step 7: Once you are inside the src directory ,execute the following commands step by step.
+python json_to_csv.py
+python loading_reviews.py
+python preprocessing.py
+python word2vec.py
+python nmf.py
+python validation.py
+python classifier.py
+
