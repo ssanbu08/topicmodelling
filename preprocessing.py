@@ -68,7 +68,7 @@ class Preprocessing(object):
                 text = self.tokenize_text(text)
                 tagged_text = nltk.pos_tag(text)
                 for word, tag in tagged_text:
-                    if tag in ['NN', 'NNS']:
+                    if tag in Configurations.POS_TAGS:
                         words.append(word)
                 sentences.append(words)
             master_df['text'] = sentences 

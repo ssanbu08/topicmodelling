@@ -60,3 +60,12 @@ python nmf.py
 python validation.py
 python classifier.py
 
+
+###Configurations
+
+1) Edit the variables in the `configurations.py` 
+2) Run `python3 frequent_queries.py`
+
+###Risks
+
+1) Line 86: there might be encoding error for the `'` in the csv files so might need to try diff encoding.

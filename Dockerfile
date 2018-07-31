@@ -3,10 +3,7 @@ MAINTAINER Anbarasan ss.anbuselvan@gmail.com
 
 
 # 1. RUN
-RUN pip install gensim
-RUN pip install pyLDAvis
-RUN /opt/conda/bin/conda install jupyter -y --quiet 
-RUN pip install simplejson
+RUN pip install -r requirements.txt
 #RUN mkdir /opt/notebooks
 
 

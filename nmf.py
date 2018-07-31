@@ -39,7 +39,7 @@ class MatrixFactorization(object):
         print("Extracting tf-idf features for NMF...")
         tfidf_vectorizer = TfidfVectorizer(max_df=maxdf, min_df=mindf,
                                            #max_features=nfeatures,
-                                           ngram_range = (1,1))
+                                           ngram_range = Configurations.N_GRAMS)
         t0 = time()
         feature_matrix = tfidf_vectorizer.fit_transform(corpus_tf_input)
         print("done in %0.3fs." % (time() - t0))
@@ -59,6 +59,30 @@ class MatrixFactorization(object):
         
         print("\nTopics in NMF model:")
         return nmf
+    
+    
+    def top_words(self, topic, n_top_words):
+        return topic.argsort()[:-n_top_words - 1:-1]
+
+    def topic_table(self, model, feature_names, n_top_words):
+        topics = {}
+        for topic_idx, topic in enumerate(model.components_):
+            t = ("topic_%d:" % topic_idx)
+            topics[t] = [feature_names[i] for i in self.top_words(topic, n_top_words)]
+        return pd.DataFrame(topics)
+    
+    
+    def showdocs(self, df, topics, nshow=15):
+        """
+        showdocs(df, topics, nshow=5) is a function that gathers a number of 
+        documents from a set of topics as a dataframe.
+        
+        """
+        idx = df.topic == topics[0]
+        for i in range(1, len(topics)):
+            idx = idx | (df.topic == topics[i])
+        return df[idx].groupby('topic').head(nshow).sort_values('topic')
+        #return df[idx].groupby('topic')
         
 
 def main():
