@@ -23,9 +23,12 @@ from gensim import corpora, similarities, matutils
 
 
 class ValidateLDA(object):
+#    
+#    def __init__(self,lda_path):
+#        self.lda = LdaModel.load(lda_path)
     
-    def __init__(self,lda_path):
-        self.lda = LdaModel.load(lda_path)
+    def __init__(self, lda_model):
+        self.lda = lda_model
         
     
     def model_analysis(self):
